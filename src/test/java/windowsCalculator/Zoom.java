@@ -1,7 +1,11 @@
 package windowsCalculator;
 
 
+import com.winapp.utils.AppDriver;
+import com.winapp.utils.DesktopDriver;
+import io.appium.java_client.pagefactory.WindowsFindBy;
 import io.appium.java_client.windows.WindowsDriver;
+import io.appium.java_client.windows.WindowsElement;
 import org.junit.*;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -13,47 +17,21 @@ import java.util.concurrent.TimeUnit;
 
 public class Zoom {
 
-    public static WindowsDriver driver;
-    public static WindowsDriver desktop;
 
-
-    @BeforeClass
-    public static void setup() {
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("app", "C:\\Program Files (x86)\\DroidCam\\DroidCamApp.exe");
-        try {
-
-            driver = new WindowsDriver(new URL("http://127.0.0.1:4723"), capabilities);
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        DesiredCapabilities desktopCapabilities = new DesiredCapabilities();
-        capabilities.setCapability("app", "Root");
-        try {
-
-            desktop = new WindowsDriver(new URL("http://127.0.0.1:4723"), capabilities);
-            desktop.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-
-    }
 
 
     @Test
-    public void test1() throws InterruptedException {
-        driver.findElementByName("Start").click();
+    public void test1()  {
+        AppDriver.getAppDriver().findElementByName("Start").click();
 
-        desktop.findElementByName("OK").click();
+        DesktopDriver.getDesktopDriver().findElementByName("OK").click();
 
-        driver.findElementByName("Close").click();
+        AppDriver.getAppDriver().findElementByName("Close").click();
 
 
 
     }
+
+
 
 }
